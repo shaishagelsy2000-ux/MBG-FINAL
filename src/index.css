@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: #F4F7FC;
+  --foreground: #0B1B3D;
+  --card: #D6E4FC;
+  --card-foreground: #0B1B3D;
+  --primary: #0B1B3D;
+  --primary-foreground: #FFFFFF;
+  --secondary: #B8D0F5;
+  --secondary-foreground: #0B1B3D;
+  --muted: #E2ECF9;
+  --muted-foreground: #4A6B9B;
+  --accent: #D4A017;
+  --accent-foreground: #0B1B3D;
+  --border: rgba(11, 27, 61, 0.15);
+  --ring: #D4A017;
+  --radius: 12px;
+}
+
+.dark {
+  --background: #0B1B3D;
+  --foreground: #FFFFFF;
+  --card: #1E3A6E;
+  --card-foreground: #FFFFFF;
+  --primary: #D4A017;
+  --primary-foreground: #0B1B3D;
+  --secondary: #152E58;
+  --secondary-foreground: #FFFFFF;
+  --muted: #152E58;
+  --muted-foreground: #8AADDB;
+  --accent: #D4A017;
+  --accent-foreground: #0B1B3D;
+  --border: rgba(255, 255, 255, 0.1);
+  --ring: #D4A017;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 130, 180, 0.4);
+  border-radius: 3px;
+}
+
+*:hover::-webkit-scrollbar {
+  opacity: 1;
+}
