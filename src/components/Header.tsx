@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { User, View } from "../types";
-import bgnLogo from "../assets/bgn-logo.jpeg";
-
+import bgnLogo from "../assets/logo.jpg";
 interface HeaderProps {
   darkMode: boolean;
   toggleDark: () => void;
