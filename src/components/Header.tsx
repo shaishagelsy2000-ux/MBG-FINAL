@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import type { User, View } from '../types';
-import bgnLogo from '../assets/bgn-logo.jpeg';
+import { useState } from "react";
+import type { User, View } from "../types";
+import bgnLogo from "../assets/bgn-logo.jpeg";
 
 interface HeaderProps {
   darkMode: boolean;
@@ -13,9 +13,9 @@ interface HeaderProps {
 
 const NAV_ITEMS = [
   {
-    id: 'favorites',
-    label: 'Grafik Favorit',
-    target: 'section-favorites',
+    id: "favorites",
+    label: "Grafik Favorit",
+    target: "section-favorites",
     iconOutline: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5">
         <rect x="3" y="12" width="4" height="9" rx="1" />
@@ -33,9 +33,9 @@ const NAV_ITEMS = [
     protected: false,
   },
   {
-    id: 'reviews',
-    label: 'Ulasan Publik',
-    target: 'section-reviews',
+    id: "reviews",
+    label: "Ulasan Publik",
+    target: "section-reviews",
     iconOutline: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" strokeLinejoin="round" strokeLinecap="round" />
@@ -49,9 +49,9 @@ const NAV_ITEMS = [
     protected: false,
   },
   {
-    id: 'foodwaste',
-    label: 'Food Waste',
-    target: 'section-foodwaste',
+    id: "foodwaste",
+    label: "Food Waste",
+    target: "section-foodwaste",
     iconOutline: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" strokeLinecap="round" strokeLinejoin="round" />
@@ -65,9 +65,9 @@ const NAV_ITEMS = [
     protected: false,
   },
   {
-    id: 'ibu',
-    label: 'Ibu Hamil & Menyusui',
-    target: 'section-ibu',
+    id: "ibu",
+    label: "Ibu Hamil & Menyusui",
+    target: "section-ibu",
     iconOutline: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5">
         <path d="M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" strokeLinecap="round" />
@@ -85,9 +85,9 @@ const NAV_ITEMS = [
     protected: true,
   },
   {
-    id: 'guru',
-    label: 'Info Guru',
-    target: 'section-guru',
+    id: "guru",
+    label: "Info Guru",
+    target: "section-guru",
     iconOutline: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5">
         <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z" strokeLinecap="round" strokeLinejoin="round" />
@@ -103,26 +103,19 @@ const NAV_ITEMS = [
   },
 ];
 
-export default function Header({
-  darkMode,
-  toggleDark,
-  user,
-  showMainNavigation,
-  onNavigate,
-  onLogout,
-}: HeaderProps) {
+export default function Header({ darkMode, toggleDark, user, showMainNavigation, onNavigate, onLogout }: HeaderProps) {
   const [activeNav, setActiveNav] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleNavClick = (item: typeof NAV_ITEMS[0]) => {
+  const handleNavClick = (item: (typeof NAV_ITEMS)[0]) => {
     if (item.protected && !user) {
-      onNavigate('login');
+      onNavigate("login");
       return;
     }
     setActiveNav(item.id);
     const el = document.getElementById(item.target);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -130,29 +123,22 @@ export default function Header({
     <header
       className="sticky top-0 z-50 border-b"
       style={{
-        backgroundColor: 'var(--background)',
-        borderColor: 'var(--border)',
-        backdropFilter: 'blur(12px)',
+        backgroundColor: "var(--background)",
+        borderColor: "var(--border)",
+        backdropFilter: "blur(12px)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Top bar */}
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
-          <button
-            onClick={() => onNavigate('home')}
-            className="flex items-center gap-2.5 shrink-0 group"
-          >
-            <img
-              src={bgnLogo}
-              alt="Logo Badan Gizi Nasional"
-              className="h-10 w-10 rounded-full object-cover"
-            />
+          <button onClick={() => onNavigate("home")} className="flex items-center gap-2.5 shrink-0 group">
+            <img src={bgnLogo} alt="Logo Badan Gizi Nasional" className="h-10 w-10 rounded-full object-cover" />
             <div className="hidden sm:block">
-              <div className="font-bold text-base leading-tight" style={{ color: 'var(--foreground)' }}>
+              <div className="font-bold text-base leading-tight" style={{ color: "var(--foreground)" }}>
                 RateThePlate
               </div>
-              <div className="text-xs font-medium" style={{ color: 'var(--muted-foreground)' }}>
+              <div className="text-xs font-medium" style={{ color: "var(--muted-foreground)" }}>
                 MBG
               </div>
             </div>
@@ -169,25 +155,23 @@ export default function Header({
                     onClick={() => handleNavClick(item)}
                     className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200"
                     style={{
-                      color: isActive ? 'var(--accent)' : 'var(--muted-foreground)',
-                      backgroundColor: isActive ? 'rgba(212, 160, 23, 0.12)' : 'transparent',
+                      color: isActive ? "var(--accent)" : "var(--muted-foreground)",
+                      backgroundColor: isActive ? "rgba(212, 160, 23, 0.12)" : "transparent",
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
-                        (e.currentTarget as HTMLElement).style.color = 'var(--foreground)';
-                        (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)';
+                        (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
+                        (e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)";
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive) {
-                        (e.currentTarget as HTMLElement).style.color = 'var(--muted-foreground)';
-                        (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
+                        (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
+                        (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
                       }
                     }}
                   >
-                    <span style={{ color: isActive ? 'var(--accent)' : 'inherit' }}>
-                      {isActive ? item.iconFilled : item.iconOutline}
-                    </span>
+                    <span style={{ color: isActive ? "var(--accent)" : "inherit" }}>{isActive ? item.iconFilled : item.iconOutline}</span>
                     <span>{item.label}</span>
                     {item.protected && !user && (
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-3.5 h-3.5 opacity-60">
@@ -207,16 +191,16 @@ export default function Header({
             <button
               onClick={toggleDark}
               className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200"
-              style={{ color: 'var(--muted-foreground)' }}
+              style={{ color: "var(--muted-foreground)" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)';
-                (e.currentTarget as HTMLElement).style.color = 'var(--foreground)';
+                (e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)";
+                (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
-                (e.currentTarget as HTMLElement).style.color = 'var(--muted-foreground)';
+                (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
               }}
-              title={darkMode ? 'Mode Terang' : 'Mode Gelap'}
+              title={darkMode ? "Mode Terang" : "Mode Gelap"}
             >
               {darkMode ? (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5">
@@ -243,37 +227,37 @@ export default function Header({
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200"
-                  style={{ backgroundColor: 'var(--card)', color: 'var(--card-foreground)' }}
+                  style={{ backgroundColor: "var(--card)", color: "var(--card-foreground)" }}
                 >
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
-                    style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-foreground)' }}
-                  >
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: "var(--accent)", color: "var(--accent-foreground)" }}>
                     {user.username[0].toUpperCase()}
                   </div>
                   <span className="hidden sm:block max-w-24 truncate">{user.username}</span>
                 </button>
                 {menuOpen && (
-                  <div
-                    className="absolute right-0 top-12 w-48 rounded-xl shadow-xl overflow-hidden z-50"
-                    style={{ backgroundColor: 'var(--card)', border: '1px solid var(--border)' }}
-                  >
+                  <div className="absolute right-0 top-12 w-48 rounded-xl shadow-xl overflow-hidden z-50" style={{ backgroundColor: "var(--card)", border: "1px solid var(--border)" }}>
                     <button
-                      onClick={() => { setMenuOpen(false); onNavigate('dashboard'); }}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        onNavigate("dashboard");
+                      }}
                       className="w-full text-left px-4 py-3 text-sm transition-colors"
-                      style={{ color: 'var(--card-foreground)' }}
-                      onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)'}
-                      onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'}
+                      style={{ color: "var(--card-foreground)" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "transparent")}
                     >
                       Dashboard Saya
                     </button>
-                    <div style={{ height: '1px', backgroundColor: 'var(--border)' }} />
+                    <div style={{ height: "1px", backgroundColor: "var(--border)" }} />
                     <button
-                      onClick={() => { setMenuOpen(false); onLogout(); }}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        onLogout();
+                      }}
                       className="w-full text-left px-4 py-3 text-sm transition-colors"
-                      style={{ color: '#ef4444' }}
-                      onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)'}
-                      onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'}
+                      style={{ color: "#ef4444" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "transparent")}
                     >
                       Keluar
                     </button>
@@ -285,14 +269,14 @@ export default function Header({
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
                   className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200"
-                  style={{ color: 'var(--muted-foreground)' }}
+                  style={{ color: "var(--muted-foreground)" }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)';
-                    (e.currentTarget as HTMLElement).style.color = 'var(--foreground)';
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)";
+                    (e.currentTarget as HTMLElement).style.color = "var(--foreground)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
-                    (e.currentTarget as HTMLElement).style.color = 'var(--muted-foreground)';
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "var(--muted-foreground)";
                   }}
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -302,25 +286,28 @@ export default function Header({
                   </svg>
                 </button>
                 {menuOpen && (
-                  <div
-                    className="absolute right-0 top-12 w-48 rounded-xl shadow-xl overflow-hidden z-50"
-                    style={{ backgroundColor: 'var(--card)', border: '1px solid var(--border)' }}
-                  >
+                  <div className="absolute right-0 top-12 w-48 rounded-xl shadow-xl overflow-hidden z-50" style={{ backgroundColor: "var(--card)", border: "1px solid var(--border)" }}>
                     <button
-                      onClick={() => { setMenuOpen(false); onNavigate('login'); }}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        onNavigate("login");
+                      }}
                       className="w-full text-left px-4 py-3 text-sm font-medium transition-colors"
-                      style={{ color: 'var(--card-foreground)' }}
-                      onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)'}
-                      onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'}
+                      style={{ color: "var(--card-foreground)" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "transparent")}
                     >
                       Masuk / Login
                     </button>
                     <button
-                      onClick={() => { setMenuOpen(false); onNavigate('register'); }}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        onNavigate("register");
+                      }}
                       className="w-full text-left px-4 py-3 text-sm transition-colors"
-                      style={{ color: 'var(--card-foreground)' }}
-                      onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--muted)'}
-                      onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'}
+                      style={{ color: "var(--card-foreground)" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "var(--muted)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "transparent")}
                     >
                       Daftar Akun
                     </button>
@@ -342,8 +329,8 @@ export default function Header({
                   onClick={() => handleNavClick(item)}
                   className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 shrink-0"
                   style={{
-                    color: isActive ? 'var(--accent)' : 'var(--muted-foreground)',
-                    backgroundColor: isActive ? 'rgba(212, 160, 23, 0.12)' : 'var(--muted)',
+                    color: isActive ? "var(--accent)" : "var(--muted-foreground)",
+                    backgroundColor: isActive ? "rgba(212, 160, 23, 0.12)" : "var(--muted)",
                   }}
                 >
                   <span>{isActive ? item.iconFilled : item.iconOutline}</span>
